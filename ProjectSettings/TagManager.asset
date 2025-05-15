@@ -3,12 +3,19 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - YMoveTrigger
+  - Obstacle
+  - Item
+  - ItemObstacle
+  - Quest
+  - Heart
+  - Ground
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
   - 
