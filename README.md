@@ -1,5 +1,3 @@
-# MagicalGirlRun
-
 # Magical Girl Run
 
 Unity 기반 2D Endless Runner 게임 프로젝트  
