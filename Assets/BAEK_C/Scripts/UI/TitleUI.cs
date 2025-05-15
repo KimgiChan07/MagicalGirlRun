@@ -7,25 +7,21 @@ using UnityEngine.SceneManagement;
 
 public class TitleUI : BaseUI
 {
-    public AudioSource audioSource;
     public Button startButton;
     public Button exitButton;
     public Button fakeExitButton;
-    public VideoPlayer videoPlayer;
     
     public override void Init()
     {
 
-        startButton.onClick.AddListener(() => OnStart(startButton.GetComponent<AudioSource>().clip));
-        exitButton.onClick.AddListener(() => OnExit(exitButton.GetComponent<AudioSource>().clip));
-        fakeExitButton.onClick.AddListener(() => OnFakeExit(fakeExitButton.GetComponent<AudioSource>().clip));
-
-        videoPlayer.Play();  
+        startButton.onClick.AddListener(() => OnStart());
+        exitButton.onClick.AddListener(() => OnStart());
+        fakeExitButton.onClick.AddListener(() => OnStart());
     }
 
-    public void OnStart(AudioClip clip)
+    public void OnStart()
     {
-        StartCoroutine(PlaySoundThen(() => LoadStartScene(), clip));
+        LoadStartScene();
     }
 
     void LoadStartScene()
@@ -42,27 +38,5 @@ public class TitleUI : BaseUI
         }
     }
 
-   public void OnExit(AudioClip clip)
-    {
-        Debug.Log("°ÔÀÓ Á¾·á");
-        StartCoroutine(PlaySoundThen(() => Application.Quit(), clip));
-    }
-
-    public void OnFakeExit(AudioClip clip)
-    {
-        Debug.Log("³Í ¸¶¹ý¼Ò³à´Ù ¾îµô µµ¸Á°¡");
-        StartCoroutine(PlaySoundThen(() => LoadStartScene(), clip));
-    }
-
-    private IEnumerator PlaySoundThen(System.Action onComplete, AudioClip clip)
-    {
-        if (audioSource != null && clip != null)
-        {
-            audioSource.clip = clip;
-            audioSource.Play();
-            yield return new WaitForSeconds(clip.length);
-        }
-        onComplete?.Invoke();
-    }
 
 }
